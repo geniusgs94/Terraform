@@ -7,10 +7,11 @@
 #   - Download from: https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html
 #   - Verify:        aws --version
 
-# Step 3: Create an IAM User in AWS Console
+# Step 3: Create an IAM User in AWS Console for terraform so that it cando stuff
 #   - Go to: https://console.aws.amazon.com/iam
 #   - Create user (e.g., terraform-s3-access) with "Programmatic access"
 #   - Attach policy: AmazonS3FullAccess (or a custom limited-access policy)
+#	- Note that give all required permissions else when trying to access or change other resource using terraform it will give error.
 
 # Step 4: Save Access Key ID and Secret Access Key
 #   - Copy or download credentials securely when user is created
@@ -30,7 +31,7 @@ provider "aws" {
 
 # Format: resource "<PROVIDER>_<RESOURCE_TYPE>" "<INTERNAL_NAME>"
 resource "aws_s3_bucket" "my_bucket" {
-  bucket = "gaurav-terraform-demo-bucket-12345"  # Must be globally unique
+  bucket = "gaurav-terraform-demo-bucket"  # Must be globally unique
   # No ACL block needed — by default, the bucket is private
 }
 
